@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Error Logs - Nlogonia Debugging</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 20px;
+    }
+    h2 {
+      text-align: center;
+    }
+    ol li {
+      margin-bottom: 15px;
+    }
+    b {
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Error Logs</h2>
+
+  <ol>
+    <li>
+      <b>Line: Navigation link</b><br>
+      Type: HTML<br>
+      Error: Anchor link points to #start but no matching section exists<br>
+      Fix: Changed href to #table
+    </li>
+
+    <li>
+      <b>Line: meta author</b><br>
+      Type: HTML<br>
+      Error: Placeholder author names used<br>
+      Fix: Replaced with actual student names
+    </li>
+
+    <li>
+      <b>Line: title</b><br>
+      Type: HTML<br>
+      Error: Generic title "CS 3"<br>
+      Fix: Updated to meaningful title
+    </li>
+
+    <li>
+      <b>Line: h1</b><br>
+      Type: HTML<br>
+      Error: Placeholder text not updated<br>
+      Fix: Replaced with actual name and section
+    </li>
+
+    <li>
+      <b>Line: duplicate id</b><br>
+      Type: HTML<br>
+      Error: id="output" used twice<br>
+      Fix: Removed duplicate id from h2
+    </li>
+
+    <li>
+      <b>Line: button onclick</b><br>
+      Type: JavaScript<br>
+      Error: x0, y0, x, y not defined variables<br>
+      Fix: Used document.getElementById().value
+    </li>
+
+    <li>
+      <b>Line: JS logic</b><br>
+      Type: JavaScript<br>
+      Error: Missing condition for divisa case<br>
+      Fix: Added (x === x0 || y === y0)
+    </li>
+
+    <li>
+      <b>Line: CSS positioning</b><br>
+      Type: CSS<br>
+      Error: Coordinate plane not positioned properly<br>
+      Fix: Added position: relative to #coordinatePlane
+    </li>
+
+    <li>
+      <b>Line: axis styling</b><br>
+      Type: CSS<br>
+      Error: Axes not centered<br>
+      Fix: Used top: 50% and left: 50%
+    </li>
+
+    <li>
+      <b>Line: image sprites</b><br>
+      Type: CSS<br>
+      Error: Background image not set for icons<br>
+      Fix: Added sprite image and proper background-position
+    </li>
+  </ol>
+
+</body>
+</html>
