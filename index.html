@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+
+  <meta name="author" content="Charles Oswin A. Dela Cruz">
+  <meta name="description" content="Nlogonia Debugging Exercise">
+  <meta name="keywords" content="debugging, javascript, css, html">
+
+  <title>Charles Oswin A. Dela Cruz - Nlogonia Debugging</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+    }
+
+    nav a {
+      margin: 10px;
+      text-decoration: none;
+      color: black;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 60%;
+      margin: auto;
+    }
+
+    td, th {
+      border: 1px solid black;
+      padding: 10px;
+      text-align: center;
+    }
+
+    .rColor {
+      background-color: #ddd;
+    }
+
+    h1 {
+      padding: 30px;
+      text-align: center;
+    }
+
+    #coordinatePlane {
+      position: relative;
+      width: 400px;
+      height: 400px;
+      border: 2px solid black;
+      margin: auto;
+    }
+
+    .axis {
+      position: absolute;
+      background: black;
+    }
+
+    #xAxis {
+      width: 100%;
+      height: 2px;
+      top: 50%;
+    }
+
+    #yAxis {
+      height: 100%;
+      width: 2px;
+      left: 50%;
+    }
+
+    .point {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background: red;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .icon {
+      width: 50px;
+      height: 50px;
+      display: inline-block;
+      background-image: url("images/sprite.png");
+    }
+
+    .facebook {
+      background-position: 0 0;
+    }
+
+    .twitter {
+      background-position: -50px 0;
+    }
+
+    .github {
+      background-position: -100px 0;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <nav>
+      <a href="#table">Table</a>
+      <a href="#input">Input</a>
+      <a href="#outputSection">Output</a>
+      <a href="errorlogs.html">Error Logs</a>
+    </nav>
+
+    <h1>CharlesOswin A. Dela Cruz / Sodium - Mar 2026</h1>
+    <h2>Nlogonia</h2>
+  </header>
+
+  <section id="table">
+    <table>
+      <tr class="rColor">
+        <th>input</th>
+        <th>output</th>
+      </tr>
+      <tr class="rColor">
+        <td colspan="2">Sample Data</td>
+      </tr>
+      <tr>
+        <td>2 1 10 10</td><td>NE</td>
+      </tr>
+      <tr>
+        <td>2 1 -10 1</td><td>divisa</td>
+      </tr>
+      <tr>
+        <td>2 1 0 33</td><td>NO</td>
+      </tr>
+      <tr class="rColor">
+        <td colspan="2">For current Input</td>
+      </tr>
+      <tr>
+        <td id="in1">-</td>
+        <td id="out1">-</td>
+      </tr>
+    </table>
+    <hr>
+  </section>
+
+  <section id="input">
+    <h2>Input</h2>
+
+    <h4>Axis Reference:</h4>
+    <p>
+      <input type="number" id="x0" placeholder="0">
+      <input type="number" id="y0" placeholder="0">
+    </p>
+
+    <h4>Point Coordinates:</h4>
+    <p>
+      <input type="number" id="x" placeholder="x">
+      <input type="number" id="y" placeholder="y">
+    </p>
+
+    <button onclick="plotPoint()">Plot</button>
+  </section>
+
+  <section id="outputSection">
+    <h2>Output</h2>
+
+    <div id="coordinatePlane">
+      <div id="xAxis" class="axis"></div>
+      <div id="yAxis" class="axis"></div>
+    </div>
+
+    <hr>
+  </section>
+
+  <footer>
+    <a href="https://facebook.com" class="icon facebook" aria-label="Facebook"></a>
+    <a href="https://twitter.com" class="icon twitter" aria-label="Twitter"></a>
+    <a href="https://github.com" class="icon github" aria-label="GitHub"></a>
+  </footer>
+
+  <script>
+    function plotPoint() {
+
+      const x0 = Number(document.getElementById("x0").value);
+      const y0 = Number(document.getElementById("y0").value);
+      const x = Number(document.getElementById("x").value);
+      const y = Number(document.getElementById("y").value);
+
+      document.getElementById("in1").textContent = `${x0} ${y0} ${x} ${y}`;
+
+      let result = "";
+
+      if (x === x0 || y === y0) {
+        result = "divisa";
+      } else if (x > x0 && y > y0) {
+        result = "NE";
+      } else if (x < x0 && y > y0) {
+        result = "NO";
+      } else if (x > x0 && y < y0) {
+        result = "SE";
+      } else {
+        result = "SO";
+      }
+
+      document.getElementById("out1").textContent = result;
+
+      const plane = document.getElementById("coordinatePlane");
+
+      const point = document.createElement("div");
+      point.className = "point";
+
+      const scale = 5;
+
+      point.style.left = (200 + (x - x0) * scale) + "px";
+      point.style.top = (200 - (y - y0) * scale) + "px";
+
+      plane.appendChild(point);
+    }
+  </script>
+
+</body>
+</html>
